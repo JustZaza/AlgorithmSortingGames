@@ -7,10 +7,14 @@ public class Main {
         System.out.println("Hello Gamer. Let's Practice Sorting Algorithms!!");
         gameSelection();
 
+
+
     }
 
     public static void gameSelection(){
         System.out.print("Choose which game you want to play!!! \n");
+
+        int[] array = {8, 7, 9, 2, 3, 1, 5, 4, 6};
 
         ArrayList<String> games = new ArrayList<>();
         games.add("1: Selection Sort");
@@ -34,7 +38,7 @@ public class Main {
                 break;
 
             case 4:
-                MergeSortGame();
+                MergeSortGame(array);
                 break;
 
             default:
@@ -152,8 +156,63 @@ public class Main {
         }
     }
 
-    public static void MergeSortGame(){
+    public static void MergeSortGame(int[] array){
+        Scanner sc = new Scanner(System.in);
+        int length = array.length;
 
+        if (length <= 1) return;
+
+        int middle = length / 2;
+        int[] leftArray = new int[middle];
+        int[] rightArray = new int[length - middle];
+
+        int i = 0; //left array
+        int j = 0; //right array
+
+        for (; i < length; i++){
+            if (i < middle){
+                leftArray[i] = array[i];
+
+            } else {
+                rightArray[j] = array[i];
+                j++;
+            }
+        }
+
+        MergeSortGame(leftArray);
+        MergeSortGame(rightArray);
+    }
+
+    public static void merge(int[] leftArray, int[] rightArray, int[] array){
+
+        int leftSize = array.length / 2;
+        int rightSize = array.length - leftSize;
+        int i = 0, l = 0, r =0; //indices
+
+        //check the conditions for merging
+        while(l < leftSize && r < rightSize){
+            if (leftArray[l] < rightArray[r]){
+                array[i] = leftArray[l];
+                i++;
+                l++;
+            } else {
+                array[i] = rightArray[r];
+                i++;
+                r++;
+            }
+        }
+
+        while(l < leftSize){
+            array[i] = leftArray[l];
+            i++;
+            l++;
+        }
+
+        while(r < rightSize){
+            array[i] = rightArray[r];
+            i++;
+            r++;
+        }
     }
 
 }
@@ -163,7 +222,7 @@ public class Main {
 //messages if wrong
 //Create different methods for selecting the games
 //Generate an array with random numbers(length = 9)
-//
+//Add array as parameter in gameSelection switch
 
 /*Bugs:
      ---Selection Sort: It's says it's a wrong number even if I'm entering the correct number.
@@ -174,4 +233,5 @@ public class Main {
             then there's a temp number. The minimum number will swap positions with the temp number.
 
      ---Insertion Sort: It's prints 'correct' repeatedly in the number of jumps it took going to the left.
-            The y/n function. Wrong move doesn't print. N could be a right move, but it prints wrong. Didn't think it through, didn't I, pretty?*/
+            The y/n function. Wrong move doesn't print. N could be a right move, but it prints wrong. Didn't think it through, didn't I, pretty?
+            */
