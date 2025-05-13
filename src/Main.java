@@ -234,4 +234,5 @@ public class Main {
 
      ---Insertion Sort: It's prints 'correct' repeatedly in the number of jumps it took going to the left.
             The y/n function. Wrong move doesn't print. N could be a right move, but it prints wrong. Didn't think it through, didn't I, pretty?
-            */
+
+     ---Merge Sort: User input needed and functionality.*/
